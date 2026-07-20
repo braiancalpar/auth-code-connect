@@ -10,7 +10,14 @@ export const authService = {
     return fetchClient.post<AuthResponse>("/auth/login", credentials);
   },
   register: async (data: RegisterData): Promise<AuthResponse> => {
-    return fetchClient.post<AuthResponse>("/auth/register", data);
+    return fetchClient.post<AuthResponse>("/auth/register", {
+      email: data.email,
+      password: data.password,
+      name: data.name,
+    });
+  },
+  refresh: async (): Promise<AuthResponse> => {
+    return fetchClient.post<AuthResponse>("/auth/refresh");
   },
   logout: async (): Promise<void> => {
     // Futuramente iremos invalidar o refresh token no servidor

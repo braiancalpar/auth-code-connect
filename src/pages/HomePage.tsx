@@ -1,8 +1,8 @@
-import { Link } from 'react-router'
-import { useDevs } from '../features/devs/hooks/useDevs'
+import { Link } from "react-router";
+import { useDevs } from "../features/devs/hooks/useDevs";
 
 export function HomePage() {
-  const { devs, loading, error } = useDevs()
+  const { devs, loading, error } = useDevs();
 
   return (
     <div className="p-8">
@@ -11,7 +11,9 @@ export function HomePage() {
       </h1>
 
       {loading && (
-        <p className="font-prompt text-lg text-medium-gray">Carregando desenvolvedores...</p>
+        <p className="font-prompt text-lg text-medium-gray">
+          Carregando desenvolvedores...
+        </p>
       )}
 
       {error && (
@@ -55,9 +57,7 @@ export function HomePage() {
                 {dev.description}
               </p>
 
-              <p className="font-prompt text-sm text-gray mb-4">
-                {dev.email}
-              </p>
+              <p className="font-prompt text-sm text-gray mb-4">{dev.email}</p>
 
               <Link
                 to={`/contact/${dev.id}`}
@@ -70,5 +70,5 @@ export function HomePage() {
         </div>
       )}
     </div>
-  )
+  );
 }
