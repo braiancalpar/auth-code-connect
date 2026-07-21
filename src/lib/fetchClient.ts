@@ -96,7 +96,7 @@ async function fetchWithAuth<T>(
         .json()
         .catch(() => ({ message: "An error occurred" }));
       throw new Error(
-        error.message || `HTTP error! status: ${response.status}`,
+        error.message || "HTTP error! status: ${response.status}",
       );
     }
 

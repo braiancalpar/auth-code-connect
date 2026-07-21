@@ -7,10 +7,10 @@ import type {
 
 export const authService = {
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
-    return fetchClient.post<AuthResponse>("/auth/login", credentials);
+    return fetchClient.post<AuthResponse>("/login", credentials);
   },
   register: async (data: RegisterData): Promise<AuthResponse> => {
-    return fetchClient.post<AuthResponse>("/auth/register", {
+    return fetchClient.post<AuthResponse>("/register", {
       email: data.email,
       password: data.password,
       name: data.name,
@@ -20,7 +20,7 @@ export const authService = {
     return fetchClient.post<AuthResponse>("/auth/refresh");
   },
   logout: async (): Promise<void> => {
-    // Futuramente iremos invalidar o refresh token no servidor
+    // Futuramente: invalidar refresh token no servidor
     return Promise.resolve();
   },
 };
