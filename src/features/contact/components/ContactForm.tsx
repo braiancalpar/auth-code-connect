@@ -1,46 +1,46 @@
-import { useState, FormEvent } from 'react'
-import { useNavigate } from 'react-router'
-import { sendMessage } from '../services/contactService'
-import type { ContactFormData } from '../types/contact.types'
+import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router";
+import { sendMessage } from "../services/contactService";
+import type { ContactFormData } from "../types/contact.types";
 
 interface ContactFormProps {
-  devId: number | string
-  devName: string
+  devId: number | string;
+  devName: string;
 }
 
 export function ContactForm({ devId, devName }: ContactFormProps) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<ContactFormData>({
-    senderName: '',
-    senderEmail: '',
-    message: '',
-  })
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+    senderName: "",
+    senderEmail: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setError(null)
+    e.preventDefault();
+    setError(null);
 
     // Validação simples
     if (!formData.senderName.trim()) {
-      setError('Por favor, preencha seu nome')
-      return
+      setError("Por favor, preencha seu nome");
+      return;
     }
 
-    if (!formData.senderEmail.trim() || !formData.senderEmail.includes('@')) {
-      setError('Por favor, insira um email válido')
-      return
+    if (!formData.senderEmail.trim() || !formData.senderEmail.includes("@")) {
+      setError("Por favor, insira um email válido");
+      return;
     }
 
     if (!formData.message.trim() || formData.message.trim().length < 10) {
-      setError('A mensagem deve ter no mínimo 10 caracteres')
-      return
+      setError("A mensagem deve ter no mínimo 10 caracteres");
+      return;
     }
 
     try {
-      setLoading(true)
+      setLoading(true);
 
       await sendMessage({
         senderName: formData.senderName,
@@ -49,17 +49,18 @@ export function ContactForm({ devId, devName }: ContactFormProps) {
         recipientDevName: devName,
         message: formData.message,
         createdAt: new Date().toISOString(),
-      })
+      });
 
-      setSuccess(true)
-      setFormData({ senderName: '', senderEmail: '', message: '' })
+      setSuccess(true);
+      setFormData({ senderName: "", senderEmail: "", message: "" });
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Erro ao enviar mensagem'
-      setError(errorMessage)
+      const errorMessage =
+        err instanceof Error ? err.message : "Erro ao enviar mensagem";
+      setError(errorMessage);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   if (success) {
     return (
@@ -73,14 +74,14 @@ export function ContactForm({ devId, devName }: ContactFormProps) {
             Sua mensagem foi enviada com sucesso para {devName}.
           </p>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="font-prompt bg-highlight-green text-graphite px-8 py-3 rounded-lg font-semibold hover:bg-pastel-green transition-colors"
           >
             Voltar para o Feed
           </button>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -108,14 +109,19 @@ export function ContactForm({ devId, devName }: ContactFormProps) {
 
         {/* Campo Nome */}
         <div>
-          <label htmlFor="senderName" className="font-prompt text-sm text-medium-gray block mb-2">
+          <label
+            htmlFor="senderName"
+            className="font-prompt text-sm text-medium-gray block mb-2"
+          >
             Seu Nome *
           </label>
           <input
             type="text"
             id="senderName"
             value={formData.senderName}
-            onChange={(e) => setFormData({ ...formData, senderName: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, senderName: e.target.value })
+            }
             className="w-full font-prompt bg-graphite border border-gray rounded-lg px-4 py-3 text-white focus:border-highlight-green focus:outline-none transition-colors"
             placeholder="Digite seu nome completo"
             disabled={loading}
@@ -124,14 +130,19 @@ export function ContactForm({ devId, devName }: ContactFormProps) {
 
         {/* Campo Email */}
         <div>
-          <label htmlFor="senderEmail" className="font-prompt text-sm text-medium-gray block mb-2">
+          <label
+            htmlFor="senderEmail"
+            className="font-prompt text-sm text-medium-gray block mb-2"
+          >
             Seu Email *
           </label>
           <input
             type="email"
             id="senderEmail"
             value={formData.senderEmail}
-            onChange={(e) => setFormData({ ...formData, senderEmail: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, senderEmail: e.target.value })
+            }
             className="w-full font-prompt bg-graphite border border-gray rounded-lg px-4 py-3 text-white focus:border-highlight-green focus:outline-none transition-colors"
             placeholder="seu@email.com"
             disabled={loading}
@@ -140,13 +151,18 @@ export function ContactForm({ devId, devName }: ContactFormProps) {
 
         {/* Campo Mensagem */}
         <div>
-          <label htmlFor="message" className="font-prompt text-sm text-medium-gray block mb-2">
+          <label
+            htmlFor="message"
+            className="font-prompt text-sm text-medium-gray block mb-2"
+          >
             Mensagem *
           </label>
           <textarea
             id="message"
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
             rows={6}
             className="w-full font-prompt bg-graphite border border-gray rounded-lg px-4 py-3 text-white focus:border-highlight-green focus:outline-none transition-colors resize-none"
             placeholder="Escreva sua mensagem aqui... (mínimo 10 caracteres)"
@@ -165,7 +181,7 @@ export function ContactForm({ devId, devName }: ContactFormProps) {
         <div className="flex gap-4">
           <button
             type="button"
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="font-prompt bg-dark-gray border border-gray text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray transition-colors"
             disabled={loading}
           >
@@ -176,10 +192,10 @@ export function ContactForm({ devId, devName }: ContactFormProps) {
             className="flex-1 font-prompt bg-highlight-green text-graphite px-6 py-3 rounded-lg font-semibold hover:bg-pastel-green transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={loading}
           >
-            {loading ? 'Enviando...' : 'Enviar Mensagem'}
+            {loading ? "Enviando..." : "Enviar Mensagem"}
           </button>
         </div>
       </form>
     </div>
-  )
+  );
 }

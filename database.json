@@ -4,13 +4,27 @@
       "id": 1,
       "email": "kaladin@kaladinconnect.com",
       "password": "$2a$10$iOj.ubQ2K7n0sd7X4pGESebk2OZ/OULsj1SSbXjEjhhvmoIwW7SJK",
-      "name": "Kaladin"
+      "name": "Kaladin",
+      "description": "Teste",
+      "categories": [
+        "Front",
+        "Data",
+        "DevOps",
+        "Back"
+      ]
     },
     {
       "id": 2,
       "email": "teste@email.com",
       "password": "$2a$10$0vSkiPHOCoz6Yo1.9b5C8uw984QhoJcs23guyHZuRsCLVrfNnMJ6G",
       "name": "teste"
+    },
+    {
+      "id": 3,
+      "email": "braianjonh@gmail.com",
+      "name": "Braian",
+      "googleId": "106769321708875281992",
+      "password": null
     }
   ],
   "devs": [

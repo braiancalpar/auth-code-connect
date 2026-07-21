@@ -1,9 +1,9 @@
-import { useLocation } from 'react-router'
-import { NavItem } from './NavItem'
-import { menuItems } from '../constants/menuItems'
+import { useLocation } from "react-router";
+import { NavItem } from "./NavItem";
+import { menuItems } from "../constants/menuItems";
 
 export function MobileNav() {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <nav className="flex md:hidden fixed bottom-0 left-0 right-0 bg-dark-gray border-t border-gray/20 h-16 z-50">
@@ -22,5 +22,5 @@ export function MobileNav() {
         ))}
       </div>
     </nav>
-  )
+  );
 }
