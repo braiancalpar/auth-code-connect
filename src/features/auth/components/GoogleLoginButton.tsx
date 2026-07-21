@@ -1,7 +1,7 @@
 import { GoogleIcon } from "./GoogleIcon";
 
 export function GoogleLoginButton() {
-  const handleClick = async () => {
+  const handleClick = () => {
     window.location.href = "http://localhost:3001/auth/google";
   };
 

@@ -1,5 +1,5 @@
-import { DesktopNav } from './DesktopNav'
-import { MobileNav } from './MobileNav'
+import { DesktopNav } from "./DesktopNav";
+import { MobileNav } from "./MobileNav";
 
 export function Navigation() {
   return (
@@ -7,5 +7,5 @@ export function Navigation() {
       <DesktopNav />
       <MobileNav />
     </>
-  )
+  );
 }

@@ -1,10 +1,10 @@
-import { useLocation } from 'react-router'
-import { NavItem } from './NavItem'
-import { menuItems } from '../constants/menuItems'
-import logo from '../../../assets/Logo.png'
+import { useLocation } from "react-router";
+import { NavItem } from "./NavItem";
+import { menuItems } from "../constants/menuItems";
+import logo from "../../../assets/Logo.png";
 
 export function DesktopNav() {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <aside className="hidden md:flex md:flex-col md:w-64 bg-dark-gray min-h-screen p-6 fixed left-0 top-0">
@@ -29,5 +29,5 @@ export function DesktopNav() {
         ))}
       </nav>
     </aside>
-  )
+  );
 }

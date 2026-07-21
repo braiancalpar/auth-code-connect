@@ -95,10 +95,12 @@ server.post("/login", async (req, res) => {
 
     // Verificar se é usuário OAuth (sem senha)
     if (!user.password) {
-      return res.status(400).json({
-        message:
-          'Esta conta usa login social. Use o botão "Entrar com Google".',
-      });
+      return res
+        .status(400)
+        .json({
+          message:
+            'Esta conta usa login social. Use o botão "Entrar com Google".',
+        });
     }
 
     // Verificar senha
