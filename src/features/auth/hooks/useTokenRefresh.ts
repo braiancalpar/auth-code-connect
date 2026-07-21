@@ -38,6 +38,7 @@ export function useTokenRefresh() {
       console.log(
         `Token will be refreshed in ${Math.floor(refreshTime / 1000)}s`,
       );
+
       const timerId = setTimeout(() => {
         console.log("Refreshing token...");
         authService
