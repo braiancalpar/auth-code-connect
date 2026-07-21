@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router";
 export function LoginPage() {
   const [searchParams] = useSearchParams();
   const error = searchParams.get("error");
+
   return (
     <div>
       {error && (
@@ -24,6 +25,7 @@ export function LoginPage() {
               Entre com suas credênciais para continuar
             </p>
           </div>
+
           {/* Login Card */}
           <div className="bg-dark-gray rounded-xl p-8 shadow-2xl border border-gray">
             <LoginForm />
@@ -35,6 +37,7 @@ export function LoginPage() {
               </div>
             </div>
             <GoogleLoginButton />
+
             {/* Register Link */}
             <div className="mt-6 text-center">
               <p className="text-medium-gray">
