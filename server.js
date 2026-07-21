@@ -217,7 +217,12 @@ server.post("/auth/refresh", (req, res) => {
     console.log("✅ Refresh token válido:", decoded);
 
     const db = router.db;
-    const user = db.get("users").find({ id: decoded.userId }).value();
+    const user = db
+      .get("users")
+      .find(
+        (databaseUser) => String(databaseUser.id) === String(decoded.userId),
+      )
+      .value();
 
     if (!user) {
       console.log("❌ User not found:", decoded.userId);
